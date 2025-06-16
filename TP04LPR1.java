@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Date;
+import java.text.DateFormat;
 
 class Data{
 	
@@ -20,13 +22,14 @@ class Data{
 		
 	}
 	
-	public Data(int d, int m, int a){
-		
-		entraDia(d);
-		entraMes(m);
+	public Data(int a, int m, int d){
+
 		entraAno(a);
-		
+		entraMes(m);
+		entraDia(d);
 	}
+	
+	//validação ano bissexto
 	
 	//entradas sem parametro
 	
@@ -420,6 +423,26 @@ class Data{
 		
 	}
 	
+	//entradas com parametro
+	
+	public void entraDia(int d){
+		
+		this.dia = d;
+		
+	}
+	
+	public void entraMes(int m){
+		
+		this.mes = m;
+		
+	}
+	
+	public void entraAno(int a){
+		
+		this.ano = a;
+		
+	}
+	
 	//saidas sem parametro
 	
 	public int retDia(){
@@ -440,27 +463,7 @@ class Data{
 		
 	}
 	
-	//entradas por parametro
-	
-	public void entraDia(int d){
-		
-		this.dia = d;
-		
-	}
-	
-	public void entraMes(int m){
-		
-		this.mes = m;
-		
-	}
-	
-	public void entraAno(int a){
-		
-		this.ano = a;
-		
-	}
-	
-	//outros metodos
+	//validação ano bissexto
 	
 	public boolean bissexto(){
 		
@@ -476,13 +479,289 @@ class Data{
 		
 	}
 	
+	//saidas especias
+	
+	public String mostra1(){
+		
+		String dia, mes;
+		
+		if(this.dia < 10){
+			
+			dia = "0" + retDia();
+			
+		} else{
+			
+			dia = "" + retDia();
+			
+		}
+		
+		if(this.mes < 10){
+			
+			mes = "0" + retMes();
+			
+		} else{
+			
+			mes = "" + retMes();
+			
+		}
+		
+		return dia + "/" + mes + "/" + retAno();
+		
+	}
+	
+	public String mostra2(){
+		
+		switch(retMes()){
+			
+			case 1:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Janeiro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Janeiro/" + retAno();
+			
+				}
+				
+			}
+			
+			case 2:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Fevereiro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Fevereiro/" + retAno();
+			
+				}
+				
+			}
+			
+			case 3:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Março/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Março/" + retAno();
+			
+				}
+				
+			}
+			
+			case 4:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Abril/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Abril/" + retAno();
+			
+				}
+				
+			}
+			
+			case 5:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Maio/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Maio/" + retAno();
+			
+				}
+				
+			}
+			
+			case 6:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Junho/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Junho/" + retAno();
+			
+				}
+				
+			}
+			
+			case 7:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Julho/" + retAno();
+					
+				} else{
+					
+					return retDia() +  "/Julho/" + retAno();
+			
+				}
+				
+			}
+			
+			case 8:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Agosto/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Agosto/" + retAno();
+			
+				}
+				
+			}
+			
+			case 9:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Setembro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Setembro/" + retAno();
+			
+				}
+				
+			}
+			
+			case 10:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Outubro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Outubro/" + retAno();
+			
+				}
+				
+			}
+			
+			case 11:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Novembro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Novembro/" + retAno();
+			
+				}
+				
+			}
+			
+			case 12:{
+				
+				if(this.dia < 10){
+			
+					return retDia() + "/Dezembro/" + retAno();
+					
+				} else{
+					
+					return retDia() + "/Dezembro/" + retAno();
+			
+				}
+				
+			}
+			
+			default: {
+            
+			return "Mês inválido: " + retMes();
+			
+			}
+			
+		}
+		
+	}
+	
+	public int diasTranscorridos(){
+		
+		int[] dias = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
+		if(bissexto()){
+			
+			dias[1] = 29;
+			
+		}
+		
+		int soma = 0;
+		
+		for(int i = 0; i < retMes() - 1; i++){
+			
+			soma += dias[i];
+			
+		}
+		
+		soma += retDia();
+		
+		return soma;
+		
+	}
+	
+	public void apresentaDataAtual(){
+		
+		Date dataAtual = new Date(); 
+		
+		DateFormat formato = DateFormat.getDateInstance(DateFormat.FULL);
+		
+		System.out.println("Data atual: " + formato.format(dataAtual));
+		
+	}
+	
 }
-
+	
 public class TP04LPR1{
 	
 	public static void main(String[] args){
 		
-		Data data = new Data();
+		Data primeiraData = new Data();
+		
+		Data segundaData = new Data(2021, 11, 19);
+		
+		
+		System.out.println();
+		System.out.println("_______________________________________");
+		System.out.println("Exibindo informacoes");
+		
+		System.out.println();
+		System.out.println("_______________________________________");
+		
+		System.out.println("Data passada por parametro");
+		System.out.println();
+		
+		System.out.println("Primeira forma de data: " + segundaData.mostra1());
+		System.out.println("Segunda forma de data: " + segundaData.mostra2());
+		System.out.println("Dias transcorridos no ano desta data: " + segundaData.diasTranscorridos());
+		
+		System.out.println("_______________________________________");
+		System.out.println();
+		
+		System.out.println("Data passada sem parametro");
+		System.out.println();
+		
+		System.out.println("Primeira forma de data: " + primeiraData.mostra1());
+		System.out.println("Segunda forma de data: " + primeiraData.mostra2());
+		System.out.println("Dias transcorridos no ano desta data: " + primeiraData.diasTranscorridos());
+		System.out.println("_______________________________________");
+		
+		primeiraData.apresentaDataAtual();
 		
 	}
 	
